@@ -1,0 +1,64 @@
+<div class="col-lg-8">
+    <h1 class="h1-strong">{{title}}</h1>
+  <div id="products" >
+      <div *ngFor="let follow of follows" class="item-produt">
+          <div class="  text-center panel panel-default ">
+              <div class="text-center panel-body">
+                 <h4>{{follows.followed.name + '  ' + follow.followed.type + '  ' + follow.followed.price}}</h4>
+                  
+                  <div class="pull-right" >
+                      &nbsp;
+                      <!-- Button HTML (to Trigger Modal) -->
+
+                     
+                  </div>
+                  
+                  <div class="pull-right" *ngIf="follow.followed.file != 'null'">       
+                  <button class="btn btn-primary pull-right" (click)="showThisImage(follow.followed._id)" *ngIf="showImage != follow.followed._id">
+                     <span class="glyphicon glyphicon-picture"></span>
+                  </button>
+                       &nbsp;
+                    
+                      <button class="btn btn-danger pull-right" (click)="hideThisImage(follow.followed._id)" *ngIf="showImage == follow.followed._id" >
+                          <span class="glyphicon glyphicon-remove-circle"></span>
+                      </button>
+                      
+                  </div> 
+                   &nbsp;
+                  
+                  
+                  
+                  <div class="col-lg-12" *ngIf="follow.followed.file != 'null' && showImage == follow.followed._id">
+                     <img src="{{url+'get-image-pro/' + follow.followed.file}}" class="col-lg-12"/>
+                  </div>
+                  
+                   &nbsp;
+                  
+                  <div class="pull-right" >
+                  
+                  <button class="btn btn-danger pull-right" (click)="deleteCarShop(follow.followed._id)" >
+                          <span class="glyphicon glyphicon-remove-circle"></span>
+                      </button>
+                  
+                      </div>
+                   &nbsp;
+                  
+                  <div class="text-center" >
+                  
+              <div class="text-center  ">{{follow.followed.description}}</div>
+          </div>
+              
+              </div>
+      </div>
+    </div>
+    <div class="text-center col-lg-12" *ngIf="follows && follows.length">
+    
+        <p>
+            <button class="btn btn-primary" (click)="viewMore()"  *ngIf="!noMore">ver mas prductos
+            </button>
+            </p>
+        
+        </div>
+</div>
+
+<div class="clearfix"></div>

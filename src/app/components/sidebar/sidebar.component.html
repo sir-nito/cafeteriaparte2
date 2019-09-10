@@ -1,0 +1,57 @@
+<div  id="user-card" class="col-lg-4 panel panel-default pull-left">
+  <div class="avatar">
+       <img src="{{url + 'get-image-user/' + identity.image}}" *ngIf="identity.image"/>
+      <img src="'assets/user.png" *ngIf="!identity.image"/>
+    </div>
+    
+    <div class="name-surname">
+        <a href="#">
+            {{identity.name + ' ' + identity.surname}}
+        </a>
+            <p class="nickname">{{identity.nick}}</p>
+        <div class="clearfix"></div>
+       
+    </div>
+</div>
+<div id="new-product"  class="col-lg-4 pull-left panel panel-default sidebar-32">
+    <div class="alert alert-success" *ngIf="status=='success'">
+           Registro completado correctamente
+    </div>
+    
+    
+    <div class="alert alert-danger" *ngIf="status=='error'">
+           no se ha podido completar la accion
+    </div>
+  <h3> INGRESAR PRODUCTO
+    </h3>
+    <form #newProForm="ngForm" (ngSubmit)="onSubmit(newProForm,$event)" class="col-lg-10">
+        <p>
+             <label>Nombre</label>
+             <input type="text" placeholder="ingresar nombre"  name="name" #name="ngModel" [(ngModel)]="product.name" class="form-control" required />
+             
+        </p>
+       <p>
+             <label>Descripcion</label>
+             <input type="text" placeholder="ingresar descripcion"  name="description" #description="ngModel" [(ngModel)]="product.description" class="form-control" required />
+            
+        </p>
+    <p>
+             <label>tipo de producto</label>
+             <input type="text" placeholder="ingresar tipo"  name="type" #type="ngModel" [(ngModel)]="product.type" class="form-control" required />
+           
+        </p>
+         <p>
+            <label > subir imagen</label>
+            <input type="file" placeholder="Subir imagen" (change)="fileChangeEvent($event)" />
+        
+        </p>
+          <p>
+             <label>precio</label>
+             <input type="text" placeholder="ingresar tipo"  name="price" #price="ngModel" [(ngModel)]="product.price" class="form-control" required />
+             
+              
+              
+        </p>
+        <input type="submit" value="Enviar" class="btn btn-primary" [disabled]="!newProForm.form.valid" />
+    </form>
+</div>

@@ -1,0 +1,83 @@
+<div class="col-lg-8">
+    <h1 class="h1-strong">{{title}}</h1>
+  <div id="products" >
+      <div *ngFor="let product of products" class="item-produt">
+          <div class="  text-center panel panel-default ">
+              <div class="text-center panel-body">
+                 <h4>{{product.name + '  ' + product.type + '  ' + product.price}}</h4>
+                  
+                  <div class="pull-right" >
+                      &nbsp;
+                      <!-- Button HTML (to Trigger Modal) -->
+<a href="#myModal{{product._id}}" role="button" class="btn btn-primary btn-primary" data-toggle="modal"  *ngIf="showImage != product._id"> <span class="glyphicon glyphicon-trash">
+    
+                          </span></a>
+                       &nbsp;
+ 
+<!-- Modal HTML -->
+<div id="myModal{{product._id}}" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">seguro que quieres eliminar el producto??</h4>
+            </div>
+            <div class="modal-body">
+                <p>si se borra el producto no podras recurperarlo</p>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary"  data-dismiss="modal"(click)="deleteProduct(product._id)">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+                     
+                  </div>
+                  &nbsp;
+                  <div class="pull-right" *ngIf="product.file != 'null'">       
+                  <button class="btn btn-primary pull-right" (click)="showThisImage(product._id)" *ngIf="showImage != product._id">
+                     <span class="glyphicon glyphicon-picture"></span>
+                  </button>
+                      &nbsp;
+                    
+                      <button class="btn btn-danger pull-right" (click)="hideThisImage(product._id)" *ngIf="showImage == product._id" >
+                          <span class="glyphicon glyphicon-remove-circle"></span>
+                      </button>
+                      
+                  </div> 
+                   &nbsp;
+                  
+                  <div class="pull-right" >
+                  
+                  <button class="btn btn-primary " (click)="addCarShop(product._id)" >
+                          <span class="glyphicon glyphicon-shopping-cart"></span>
+                      </button>
+                  
+                      </div>
+                      
+                  <div class="col-lg-12" *ngIf="product.file != 'null' && showImage == product._id">
+                     <img src="{{url+'get-image-pro/' + product.file}}" class="col-lg-12"/>
+                  </div>
+                  
+                  
+            
+              <div class="text-center  ">{{product.description}}</div>
+          </div>
+              
+              </div>
+      </div>
+    </div>
+    <div class="text-center col-lg-12" *ngIf="products && products.length">
+    
+        <p>
+            <button class="btn btn-primary" (click)="viewMore()"  *ngIf="!noMore">ver mas prductos
+            </button>
+            </p>
+        
+        </div>
+</div>
+<sidebar (sended)="refresh($event)"></sidebar>
+
+<div class="clearfix"></div>
